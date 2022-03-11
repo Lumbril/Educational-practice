@@ -1,17 +1,21 @@
 package com.example.questionnaire.controller;
 
 import com.example.questionnaire.entity.Role;
+import com.example.questionnaire.entity.User;
 import com.example.questionnaire.service.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Enumeration;
 
 @Controller
+@RequestMapping("/test")
 public class Test {
     @Autowired
     private RoleServiceImpl roleService;
@@ -19,6 +23,32 @@ public class Test {
     @GetMapping("/")
     public String test() {
         return "login";
+    }
+
+    @GetMapping("/registration")
+    public String registration(Model model) {
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String addNewUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "registration";
+        }
+
+        if (user.getLogin() == null || user.getLogin().length() < 5) {
+            model.addAttribute("error", "Длина логина должна быть не меньше 5");
+
+            return "registration";
+        }
+
+        if (!user.getPassword().equals(user.getPasswordConfirm())) {
+            model.addAttribute("error", "Пароли не совпадают");
+
+            return "registration";
+        }
+
+        return "redirect:/";
     }
 
     @GetMapping("/add_role")

@@ -15,11 +15,18 @@ public class User implements UserDetails {
     @Column(name = "Id", nullable = false)
     private Long id;
 
+    public String getLogin() {
+        return login;
+    }
+
     @Column(name = "login", nullable = false, unique = true)
     private String login;
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Transient
+    private String passwordConfirm;
 
     @Column(name = "roles", nullable = false)
     @ManyToMany(fetch = FetchType.EAGER)
@@ -89,5 +96,13 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 }
