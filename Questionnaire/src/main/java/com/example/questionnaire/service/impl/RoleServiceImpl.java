@@ -13,7 +13,6 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-
     @Override
     public Role addRole(Role role) throws Exception {
         if (roleRepository.findByName(role.getName()) != null) {

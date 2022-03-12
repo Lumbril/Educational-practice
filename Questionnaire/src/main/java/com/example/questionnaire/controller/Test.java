@@ -3,6 +3,7 @@ package com.example.questionnaire.controller;
 import com.example.questionnaire.entity.Role;
 import com.example.questionnaire.entity.User;
 import com.example.questionnaire.service.impl.RoleServiceImpl;
+import com.example.questionnaire.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ import java.io.IOException;
 public class Test {
     @Autowired
     private RoleServiceImpl roleService;
+
+    @Autowired
+    private UserServiceImpl userService;
 
     @GetMapping("/")
     public String test() {
@@ -48,7 +52,15 @@ public class Test {
             return "registration";
         }
 
-        return "redirect:/";
+        try {
+            userService.addUser(user);
+        } catch (Exception e) {
+            model.addAttribute("user", "Такой логин уже используется");
+
+            return "registration";
+        }
+
+        return "redirect:/test/";
     }
 
     @GetMapping("/add_role")
