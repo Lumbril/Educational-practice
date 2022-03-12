@@ -24,6 +24,11 @@ public class Test {
     @Autowired
     private UserServiceImpl userService;
 
+    @GetMapping("/user")
+    public String user() {
+        return "user";
+    }
+
     @GetMapping("/")
     public String test() {
         return "login";
