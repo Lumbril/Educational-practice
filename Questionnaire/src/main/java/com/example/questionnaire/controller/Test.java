@@ -6,6 +6,11 @@ import com.example.questionnaire.service.impl.RoleServiceImpl;
 import com.example.questionnaire.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +23,9 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/test")
 public class Test {
+    @Autowired
+    protected AuthenticationManager authenticationManager;
+
     @Autowired
     private RoleServiceImpl roleService;
 
@@ -40,7 +48,7 @@ public class Test {
     }
 
     @PostMapping("/registration")
-    public String addNewUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+    public String addNewUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
@@ -58,14 +66,31 @@ public class Test {
         }
 
         try {
+            String login = user.getLogin();
+            String password = user.getPassword();
+
             userService.addUser(user);
+
+            authUser(request, login, password);
         } catch (Exception e) {
-            model.addAttribute("user", "Такой логин уже используется");
+            e.printStackTrace();
+            model.addAttribute("error", e.getMessage());
 
             return "registration";
         }
 
-        return "redirect:/test/";
+        return "redirect:/test/user/";
+    }
+
+    private void authUser(HttpServletRequest request, String login, String password) {
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(login, password);
+
+        request.getSession();
+
+        token.setDetails(new WebAuthenticationDetails(request));
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
+
+        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
     }
 
     @GetMapping("/add_role")
