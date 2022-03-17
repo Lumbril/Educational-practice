@@ -33,7 +33,11 @@ public class Test {
     private UserServiceImpl userService;
 
     @GetMapping("/user")
-    public String user() {
+    public String user(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        model.addAttribute("name", "Привет зарегистрированный Юзер - " + userName + "!");
+
         return "user";
     }
 
