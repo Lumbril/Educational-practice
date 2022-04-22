@@ -1,5 +1,7 @@
 package com.example.questionnaire.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ public class AnswerOption {
     private String answerText;
 
     @Transient
+    @JsonIgnore
     @ManyToMany(mappedBy = "question_answer_options")
     private Set<Question> questions;
 

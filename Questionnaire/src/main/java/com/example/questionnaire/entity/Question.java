@@ -1,5 +1,7 @@
 package com.example.questionnaire.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,9 +16,14 @@ public class Question {
     @Column(name = "[question text]", nullable = false)
     private String questionText;
 
-    @Column(name = "options", nullable = false)
+    @Column(name = "[answer options]", nullable = false)
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<AnswerOption> answerOptions;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "answer", nullable = false)
+    private AnswerOption answer;
 
     public Question() {
     }
@@ -43,5 +50,13 @@ public class Question {
 
     public void setAnswerOptions(Set<AnswerOption> answerOptions) {
         this.answerOptions = answerOptions;
+    }
+
+    public AnswerOption getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(AnswerOption answer) {
+        this.answer = answer;
     }
 }
