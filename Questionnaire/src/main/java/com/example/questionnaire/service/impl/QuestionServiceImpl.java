@@ -14,6 +14,11 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionRepository questionRepository;
 
     @Override
+    public Question getQuestion(long id) {
+        return questionRepository.findById(id).isEmpty() ? null : questionRepository.findById(id).get();
+    }
+
+    @Override
     public List<Question> getAll() {
         return (List<Question>) questionRepository.findAll();
     }
