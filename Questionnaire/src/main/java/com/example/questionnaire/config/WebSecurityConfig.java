@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,7 +42,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     //Доступ для пользователь с ролью Юзер
                     .antMatchers("/test/user").hasRole("USER")
                     //Доступ разрешен всем пользователей
-                    .antMatchers("/", "/resources/**", "/test/**", "/question/**").permitAll()
+                    .antMatchers(
+                            "/", "/resources/**", "/test/**", "/question/**",
+                            "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"
+                    ).permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
