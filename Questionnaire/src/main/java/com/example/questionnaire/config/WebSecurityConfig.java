@@ -30,6 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf()
@@ -43,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/test/user").hasRole("USER")
                     //Доступ разрешен всем пользователей
                     .antMatchers(
-                            "/", "/resources/**", "/test/**", "/question/**",
+                            "/", "/resources/**", "/static/**", "/test/**", "/question/**",
                             "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"
                     ).permitAll()
                 //Все остальные страницы требуют аутентификации
