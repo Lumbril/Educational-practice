@@ -36,14 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .disable()
                 .authorizeRequests()
                     //Доступ только для не зарегистрированных пользователей
-                    .antMatchers("/registration", "/login").not().fullyAuthenticated()
+                    .antMatchers("/registration").not().fullyAuthenticated()
                     //Доступ только для пользователей с ролью Администратор
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     //Доступ для пользователь с ролью Юзер
                     .antMatchers("/test/user", "/question/**").hasRole("USER")
                     //Доступ разрешен всем пользователей
                     .antMatchers(
-                            "/", "/resources/**", "/static/**", "/test/**", "/question/**",
+                            "/", "/login", "/resources/**", "/static/**", "/test/**", "/question/**",
                             "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html"
                     ).permitAll()
                 //Все остальные страницы требуют аутентификации
