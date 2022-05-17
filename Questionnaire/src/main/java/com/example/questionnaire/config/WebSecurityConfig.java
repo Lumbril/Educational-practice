@@ -30,22 +30,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
-    }
-
-    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf()
                     .disable()
                 .authorizeRequests()
                     //Доступ только для не зарегистрированных пользователей
-                    .antMatchers("/test/registration", "/registration").not().fullyAuthenticated()
+                    .antMatchers("/registration", "/login").not().fullyAuthenticated()
                     //Доступ только для пользователей с ролью Администратор
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     //Доступ для пользователь с ролью Юзер
-                    .antMatchers("/test/user").hasRole("USER")
+                    .antMatchers("/test/user", "/question/**").hasRole("USER")
                     //Доступ разрешен всем пользователей
                     .antMatchers(
                             "/", "/resources/**", "/static/**", "/test/**", "/question/**",
@@ -53,13 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     ).permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
-                .and()
-                    //Настройка для входа в систему
-                    .formLogin()
-                    .loginPage("/")
-                    //Перенарпавление на главную страницу после успешного входа
-                    .defaultSuccessUrl("/test/user")
-                    .permitAll()
                 .and()
                     .logout()
                     .permitAll()
