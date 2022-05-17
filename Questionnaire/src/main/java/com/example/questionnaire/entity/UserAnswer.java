@@ -14,8 +14,15 @@ public class UserAnswer {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "question_name", nullable = false)
+    @JoinColumn(name = "question_id", nullable = false)
     private Question question;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "answer_id", nullable = false)
+    private AnswerOption answerOption;
+
+    @Column(name = "is_right", nullable = false)
+    private Boolean isRight;
 
     public UserAnswer() {
     }
@@ -42,5 +49,21 @@ public class UserAnswer {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public AnswerOption getAnswerOption() {
+        return answerOption;
+    }
+
+    public void setAnswerOption(AnswerOption answerOption) {
+        this.answerOption = answerOption;
+    }
+
+    public Boolean getRight() {
+        return isRight;
+    }
+
+    public void setRight(Boolean right) {
+        isRight = right;
     }
 }

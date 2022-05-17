@@ -112,6 +112,12 @@ public class Test {
         return "Successful";
     }
 
+    @GetMapping(value = "/who")
+    @ResponseBody
+    public String imWho() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
     @RequestMapping(value = "/json", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String getRequestAttr(HttpServletRequest request) throws IOException {
