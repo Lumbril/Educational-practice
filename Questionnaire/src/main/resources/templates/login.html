@@ -1,16 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <title>Вход</title>
 </head>
 <body>
-    <div>
-        <form action="/" method="post">
-            <p>Логин: <input type="text" name="username"/> </p>
-            <p>Пароль: <input type="password" name="password"/> </p>
-            <button type="submit">Войти</button>
-        </form>
+<div class="content-wrapper">
+    <div class="left-wrapper"></div>
+    <div class="right-wrapper">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h2>Вход</h2>
+                <img src="static/img/NFT%20logo.png" alt="">
+            </div>
+            <div class="form">
+                <form action="/login" method="post">
+                    <div class="inner-from-wrapper">
+                        <div class="input-wrapper">
+                            <input type="text" id="login" name="login" placeholder="Логин"  autocomplete="off">
+                            <img src="static/img/User.png" alt="">
+                        </div>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Пароль" autocomplete="off">
+                            <img src="static/img/Password.png" alt="">
+                        </div>
+                        <div class="submit-wrapper">
+                            <input type="submit" id="submit" value="Войти">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 </body>
 </html>

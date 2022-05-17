@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Instok";
+  src: url("../fonts/IstokWeb-Bold.ttf") format("ttf"), url("../fonts/IstokWeb-Regular.ttf") format("ttf");
+}
+body {
+  height: 100%;
+  background-image: url("../img/quest_bg.png"), url("../img/background.png");
+  background-size: auto 100%, auto;
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 0;
+}
+
+.header-wrapper {
+  text-align: center;
+}
+.header-wrapper .middle-text {
+  font-family: "Istok";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 115px;
+}
+.questions-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=questionnaire.css.map */
