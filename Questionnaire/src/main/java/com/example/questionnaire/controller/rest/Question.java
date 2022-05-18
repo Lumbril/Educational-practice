@@ -9,14 +9,11 @@ import com.example.questionnaire.entity.UserAnswer;
 import com.example.questionnaire.service.impl.QuestionServiceImpl;
 import com.example.questionnaire.service.impl.UserAnswerServiceImpl;
 import com.example.questionnaire.service.impl.UserServiceImpl;
-import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
