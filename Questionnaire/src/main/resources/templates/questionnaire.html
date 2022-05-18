@@ -11,62 +11,36 @@
     <title>Вход</title>
 </head>
 <body>
+<div class="logout-wrapper">
+    <a href="/logout">
+        <button>Выход</button>
+    </a>
+</div>
 <div class="content-wrapper">
     <div class="header-wrapper">
-        <h1>ТЕСТИРОВАНИЕ</h1>
-        <p class="middle-text">
-            Ниже Вам предложено пройти тестирование с вопросами на тему NFT технологий
-        </p>
-        <p class="bottom-text">
-            Тестирование затрагивает как общие темы, связанные с работой NFT технологий,
-            так и узконаправленные вопросы, касающиеся использования NFT
-            в игровой индустрии.
-        </p>
+        <div class="header-subwrapper">
+            <h1>ТЕСТИРОВАНИЕ</h1>
+            <p class="middle-text">
+                Ниже Вам предложено пройти тестирование с вопросами на тему NFT технологий
+            </p>
+            <p class="bottom-text">
+                Тестирование затрагивает как общие темы, связанные с работой NFT технологий,
+                так и узконаправленные вопросы, касающиеся использования NFT
+                в игровой индустрии.
+            </p>
+        </div>
+
     </div>
-    <form action="" method="post">
+    <form action="" method="post" onsubmit="event.preventDefault(); collectAnswers(this)">
         <div class="questions-wrapper">
-            <div class="question">
-                <div class="question-text">
-                    1. Текст вопроса. Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s?
-                </div>
-                <div class="answers">
-                    <div class="answer">
-                        <input type="radio" name="question-1" value="1" id="answer-1">
-                        <label for="answer-1">
-                            The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
-                            comes from a line in section 1.10.32.
-                        </label>
-                    </div>
-                    <div class="answer">
-                        <input type="radio" name="question-1" value="2" id="answer-2">
-                        <label for="answer-2">
-                            The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
-                            comes from a line in section 1.10.32.
-                        </label>
-                    </div>
-                    <div class="answer">
-                        <input type="radio" name="question-1" value="3" id="answer-3">
-                        <label for="answer-3">
-                            The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
-                            comes from a line in section 1.10.32.
-                        </label>
-                    </div>
-                    <div class="answer">
-                        <input type="radio" name="question-1" value="4" id="answer-4">
-                        <label for="answer-4">
-                            The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..",
-                            comes from a line in section 1.10.32.
-                        </label>
-                    </div>
-                </div>
-            </div>
+
         </div>
         <div class="submit-wrapper">
-            <input type="submit" value="Закончить">
+            <input type="submit" value="Завершить тест">
         </div>
     </form>
 
 </div>
+<script src="static/js/questionnaire.js"></script>
 </body>
 </html>

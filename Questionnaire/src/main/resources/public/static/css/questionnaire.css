@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Instok";
-  src: url("../fonts/IstokWeb-Bold.ttf") format("ttf"), url("../fonts/IstokWeb-Regular.ttf") format("ttf");
+  font-family: "Istok";
+  src: url("../fonts/IstokWeb-Bold.ttf") format("ttf"), url("../fonts/IstokWeb-Regular.ttf") format("ttf"), url("../fonts/IstokWeb-Regular.woff") format("woff"), url("../fonts/IstokWeb-Bold.woff") format("woff");
 }
 * {
   padding: 0;
@@ -8,14 +8,20 @@
   border: 0;
   font-family: "Istok";
   box-sizing: border-box;
+  color: white;
+}
+
+html {
+  height: 100%;
 }
 
 body {
   height: 100%;
-  background-image: url("../img/quest_bg.png"), url("../img/background.png");
-  background-size: auto 100%, auto;
+  background-image: url("../img/background.png");
+  background-size: auto, auto;
   background-repeat: no-repeat, no-repeat;
   background-position: 0 0;
+  background-attachment: fixed;
 }
 
 form {
@@ -23,8 +29,24 @@ form {
   display: block;
 }
 
+.content-wrapper {
+  padding-bottom: 50px;
+}
+
 .header-wrapper {
+  background-image: url("../img/quest_bg.png");
+  background-size: 100%, auto;
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 0;
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header-wrapper .header-subwrapper {
+  width: 70%;
 }
 .header-wrapper h1 {
   font-style: normal;
@@ -36,63 +58,116 @@ form {
   font-family: "Istok";
   font-style: normal;
   font-weight: 700;
-  font-size: 48px;
-  line-height: 72px;
+  font-size: 32px;
+  line-height: 48px;
 }
 .header-wrapper .bottom-text {
-  font-size: 32px;
+  font-size: 24px;
   font-style: normal;
-  line-height: 48px;
+  line-height: 32px;
 }
 
 .questions-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 40px;
   padding: 20px;
 }
 .questions-wrapper .question {
-  width: 100%;
+  width: 90%;
   padding: 20px;
-  border: 20px solid transparent;
-  background-color: linear-gradient(270deg, #2C00AE 0%, #170C4E 100%);
+  border: 20px solid #2C00AE;
+  background: linear-gradient(270deg, #2C00AE 0%, #170C4E 100%);
 }
 .questions-wrapper .question .question-text {
   font-style: normal;
-  font-size: 42px;
-  line-height: 60px;
+  font-size: 32px;
+  line-height: 48px;
   font-weight: 700;
+  margin-bottom: 30px;
 }
 .questions-wrapper .question .answers {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
+  gap: 20px 60px;
 }
 .questions-wrapper .question .answers .answer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
-  max-width: 40%;
+  gap: 10px;
 }
 .questions-wrapper .question .answers .answer input {
+  position: absolute;
   opacity: 0;
-  width: 0;
+  z-index: -1;
 }
-.questions-wrapper .question .answers .answer input:after {
+.questions-wrapper .question .answers .answer input + .input-marker {
+  content: "";
   background-color: transparent;
-  width: 20px;
-  height: 20px;
+  width: 30px;
   border: 4px solid white;
   border-radius: 100%;
+  aspect-ratio: 1/1;
 }
-.questions-wrapper .question .answers .answer input:checked:after {
+.questions-wrapper .question .answers .answer input + .input-marker:hover {
+  cursor: pointer;
+}
+.questions-wrapper .question .answers .answer input:checked + .input-marker {
+  padding: 1px;
   background-color: white;
 }
 .questions-wrapper .question .answers .answer label {
-  font-size: 32px;
+  font-size: 24px;
   font-style: normal;
+  line-height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+.questions-wrapper .question .answers .answer label:hover {
+  cursor: pointer;
+}
+
+.submit-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.submit-wrapper input {
+  background-color: #2C00AE;
+  padding: 20px 70px;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
   line-height: 48px;
+}
+.submit-wrapper input:hover {
+  cursor: pointer;
+  background-color: #170C4E;
+}
+
+.logout-wrapper {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+.logout-wrapper button {
+  background-color: #2C00AE;
+  padding: 10px 30px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+}
+.logout-wrapper button:hover {
+  cursor: pointer;
+  background-color: #170C4E;
 }
 
 /*# sourceMappingURL=questionnaire.css.map */
