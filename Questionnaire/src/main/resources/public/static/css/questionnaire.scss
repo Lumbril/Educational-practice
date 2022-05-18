@@ -123,6 +123,8 @@ form {
           content: '';
           background-color: transparent;
           width: 30px;
+          min-width: 30px;
+          max-width: 30px;
           border: 4px solid white;
           border-radius: 100%;
           aspect-ratio: 1/1;
@@ -145,6 +147,12 @@ form {
           flex-direction: row;
           align-items: center;
           gap: 15px;
+          width: 100%;
+
+          span {
+            width: auto;
+          }
+
 
           &:hover {
             cursor: pointer;

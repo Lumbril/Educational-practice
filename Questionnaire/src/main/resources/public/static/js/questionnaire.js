@@ -18,7 +18,7 @@ function getQuestionList() {
                         <label for="q${question.id}a${answer.id}">
                             <input type="radio" name="${question.id}" value="${answer.id}" id="q${question.id}a${answer.id}">
                             <div class="input-marker"></div>
-                            ${answer.answerText}
+                            <div>${answer.answerText}</div> 
                         </label>
                     </div>`
                     answers.push(answerTag)
