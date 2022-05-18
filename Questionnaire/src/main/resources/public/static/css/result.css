@@ -63,4 +63,22 @@ body {
   line-height: 60px;
 }
 
+.logout-wrapper {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+.logout-wrapper button {
+  background-color: #2C00AE;
+  padding: 10px 30px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+}
+.logout-wrapper button:hover {
+  cursor: pointer;
+  background-color: #170C4E;
+}
+
 /*# sourceMappingURL=result.css.map */
