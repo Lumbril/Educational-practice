@@ -1,7 +1,9 @@
-package com.example.questionnaire.controller;
+package com.example.questionnaire.controller.rest;
 
 import com.example.questionnaire.dto.Answer;
+import com.example.questionnaire.dto.AnswerList;
 import com.example.questionnaire.dto.QuestionList;
+import com.example.questionnaire.dto.RightAnswerNum;
 import com.example.questionnaire.entity.AnswerOption;
 import com.example.questionnaire.entity.UserAnswer;
 import com.example.questionnaire.service.impl.QuestionServiceImpl;
@@ -13,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -83,5 +86,15 @@ public class Question {
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Successful");
+    }
+
+    @PostMapping(value = "/answers", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity giveAnswers(@Valid @RequestBody AnswerList answerList, BindingResult bindingResult) {
+        return ResponseEntity.status(HttpStatus.CREATED).body("Successful");
+    }
+
+    @GetMapping("/count_right_answer")
+    public RightAnswerNum getRightAnswerCount() {
+        return new RightAnswerNum(0);
     }
 }

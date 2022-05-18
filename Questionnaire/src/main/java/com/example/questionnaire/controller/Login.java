@@ -42,7 +42,7 @@ public class Login {
         if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
             authUser(request, login, password);
 
-            return "redirect:/test/user";
+            return "redirect:/questionnaire";
         }
 
         return "redirect:/";
