@@ -161,6 +161,27 @@ body {
           }
         }
       }
+      .move-wrapper {
+        margin-top: 20px;
+        width: 100%;
+
+        button {
+          width: 100%;
+          padding: 20px;
+          background-color: $button-background;
+          color: white;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 32px;
+          line-height: 48px;
+
+          &:hover {
+            cursor: pointer;
+            background-color: $input-background;
+          }
+
+        }
+      }
     }
   }
 }

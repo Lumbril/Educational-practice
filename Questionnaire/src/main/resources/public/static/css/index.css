@@ -139,5 +139,23 @@ body {
   cursor: pointer;
   background-color: #3914A5;
 }
+.content-wrapper .right-wrapper .form-wrapper .move-wrapper {
+  margin-top: 20px;
+  width: 100%;
+}
+.content-wrapper .right-wrapper .form-wrapper .move-wrapper button {
+  width: 100%;
+  padding: 20px;
+  background-color: #5428D4;
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+}
+.content-wrapper .right-wrapper .form-wrapper .move-wrapper button:hover {
+  cursor: pointer;
+  background-color: #3914A5;
+}
 
 /*# sourceMappingURL=index.css.map */
