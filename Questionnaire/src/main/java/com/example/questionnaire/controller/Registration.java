@@ -69,7 +69,7 @@ public class Registration {
             return "registration";
         }
 
-        return "redirect:/test/user/";
+        return "redirect:/questionnaire";
     }
 
     private void authUser(HttpServletRequest request, String login, String password) {

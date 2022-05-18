@@ -29,6 +29,10 @@ public class Login {
 
     @GetMapping(value = "/")
     public String getLoginPage() {
+        if (SecurityContextHolder.getContext().getAuthentication() == null) {
+            return "redirect:/questionnaire";
+        }
+
         return "login";
     }
 
@@ -39,7 +43,7 @@ public class Login {
 
         User user = userService.getByLogin(login);
 
-        if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
+        if (user != null && bCryptPasswordEncoder.matches(password, user.getPassword())) {
             authUser(request, login, password);
 
             return "redirect:/questionnaire";

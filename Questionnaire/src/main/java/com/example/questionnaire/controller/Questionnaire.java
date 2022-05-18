@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/questionnaire")
+    @RequestMapping("/questionnaire")
 public class Questionnaire {
     @Autowired
     private UserAnswerServiceImpl userAnswerService;
@@ -16,7 +16,7 @@ public class Questionnaire {
     @GetMapping("")
     public String getPage() {
         if (userAnswerService.checkUser(SecurityContextHolder.getContext().getAuthentication().getName())) {
-            return "redirect:/test/user";
+            return "redirect:/results";
         }
         
         return "questionnaire";
