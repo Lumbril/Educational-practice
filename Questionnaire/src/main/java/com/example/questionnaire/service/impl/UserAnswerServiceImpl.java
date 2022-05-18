@@ -19,6 +19,11 @@ public class UserAnswerServiceImpl implements UserAnswersService {
     }
 
     @Override
+    public boolean checkUser(String login) {
+        return userAnswersRepository.findByUserLogin(login).size() > 0 ? true : false;
+    }
+
+    @Override
     public List<UserAnswer> getUserAnswersByUserLogin(String login) throws Exception {
         return userAnswersRepository.findByUserLogin(login);
     }

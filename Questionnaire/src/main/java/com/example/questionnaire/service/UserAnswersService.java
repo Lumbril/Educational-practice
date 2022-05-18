@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface UserAnswersService {
     void addUserAnswer(UserAnswer userAnswer) throws Exception;
+    boolean checkUser(String login);
     List<UserAnswer> getUserAnswersByUserLogin(String login) throws Exception;
 }

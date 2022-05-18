@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -41,6 +42,10 @@ public class Question {
     public ResponseEntity giveAnswers(@Valid @RequestBody AnswerList answerList, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not valid data");
+        }
+
+        if (userAnswerService.checkUser(SecurityContextHolder.getContext().getAuthentication().getName())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You already answered");
         }
 
         for (Answer answer : answerList.getAnswers()) {
@@ -90,6 +95,22 @@ public class Question {
 
     @GetMapping("/count_right_answer")
     public RightAnswerNum getRightAnswerCount() {
-        return new RightAnswerNum(0);
+        List<UserAnswer> answers = null;
+
+        try {
+            answers = userAnswerService.getUserAnswersByUserLogin(
+                    SecurityContextHolder.getContext().getAuthentication().getName()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int count = 0;
+
+        for (UserAnswer answer : answers) {
+            count += answer.getRight() ? 1 : 0;
+        }
+
+        return new RightAnswerNum(count);
     }
 }
