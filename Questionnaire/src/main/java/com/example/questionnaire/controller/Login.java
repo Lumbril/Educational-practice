@@ -29,7 +29,9 @@ public class Login {
 
     @GetMapping(value = "/")
     public String getLoginPage() {
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
+        boolean f = SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser");
+
+        if (!f) {
             return "redirect:/questionnaire";
         }
 
