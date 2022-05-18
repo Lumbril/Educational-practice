@@ -69,7 +69,7 @@ function collectAnswers(form) {
         body: JSON.stringify({
             answers: answersArray
         })
-    }).then(r => console.log(r.statusText))
+    }).then(r => document.location.reload())
 
 }
 
