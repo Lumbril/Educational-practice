@@ -9,7 +9,6 @@ function getQuestionList() {
         .then(res => res.json())
         .then(data => {
             questionNumber = data.questions.length
-            console.log(data.questions)
             let i = 1
             for (const question of data.questions) {
                 let questionTag = `<div class="question-text">${i}. ${question.questionText}</div>`
